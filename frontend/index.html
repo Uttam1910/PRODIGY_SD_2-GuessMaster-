@@ -10,10 +10,12 @@
     <div class="game-container">
         <h1>Guess the Number!</h1>
         <input type="number" id="guessInput" placeholder="Enter your guess" />
-        <button onclick="submitGuess()">Submit Guess</button>
-        <button onclick="startNewGame()">New Game</button>
-        <button onclick="resetHistory()">Reset History</button>
-        <button onclick="revealNumber()">Reveal Number</button>
+        <div class="button-container">
+            <button onclick="submitGuess()">Submit Guess</button>
+            <button onclick="startNewGame()">New Game</button>
+            <button onclick="resetHistory()">Reset History</button>
+            <button onclick="revealNumber()">Reveal Number</button>
+        </div>
 
         <p id="feedback"></p>
         <p>Attempts: <span id="attempts">0</span></p>
