@@ -12,7 +12,7 @@ A fun and interactive number guessing game built with JavaScript, HTML, and CSS.
 
 ## **Demo**
 
-You can play the GuessMaster game online here: [Live Demo Link](#) *(Add the live demo link if hosted online)*
+You can play the GuessMaster game online here: 
 
 
 https://github.com/user-attachments/assets/f77d44fe-3597-4f37-81cc-d15b6e5966cc
