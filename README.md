@@ -66,7 +66,7 @@ To run the game locally on your machine:
 **Multiplayer Mode**: Play with friends and see who can guess the number faster.
 
 
-##**Contributing**
+## **Contributing**
 
 Contributions are welcome! Please feel free to submit a pull request or open an issue to suggest improvements or report bugs.
 
@@ -76,7 +76,7 @@ Commit your changes (git commit -m 'Add new feature').
 Push to the branch (git push origin feature/NewFeature).
 Open a pull request.
 
-##**Contact**
+## **Contact**
 For any inquiries or suggestions, feel free to reach out:
 
 Author: **Uttam**
