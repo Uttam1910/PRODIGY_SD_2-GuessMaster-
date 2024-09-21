@@ -79,3 +79,28 @@ function updateGuessHistory() {
         historyElement.appendChild(li);
     });
 }
+
+
+// Assuming this function is triggered when the player wins
+function gameWon() {
+    // Displaying a winning message prompt
+    const modal = document.getElementById("winModal"); // Assuming you have a modal for winning
+    modal.style.display = "block";
+    
+    // Clear the input field after the prompt
+    document.getElementById("guessInput").value = ""; // Clearing the input field
+
+    // Trigger animation for the winning effect
+    const gameContainer = document.querySelector('.game-container');
+    gameContainer.classList.add('won-animation');
+
+    // Remove animation after it completes (optional, to reuse later)
+    setTimeout(() => {
+        gameContainer.classList.remove('won-animation');
+    }, 2000); // Animation lasts for 2 seconds
+}
+
+// Close the modal when the user clicks the close button (for modal interactivity)
+document.querySelector('.close').onclick = function() {
+    document.getElementById("winModal").style.display = "none";
+};
