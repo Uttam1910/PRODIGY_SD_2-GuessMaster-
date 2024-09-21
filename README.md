@@ -11,7 +11,7 @@ A fun and interactive number guessing game built with JavaScript, HTML, and CSS.
 - 💾 **Persistent Storage**: Best score and guess history are saved using `localStorage`.
 
 ## **Demo**
-C:\Users\Uttam\OneDrive\Desktop\Prodigy\GuessMaster\task2.mp4
+
 You can play the GuessMaster game online here: [Live Demo Link](#) *(Add the live demo link if hosted online)*
 
 ## **Screenshots**
