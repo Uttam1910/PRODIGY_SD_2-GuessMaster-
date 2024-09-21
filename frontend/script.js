@@ -1,56 +1,80 @@
+// Initialize game variables
 let secretNumber = generateRandomNumber();
 let attempts = 0;
 let bestScore = localStorage.getItem('bestScore') || null;
 let guessHistory = JSON.parse(localStorage.getItem('guessHistory')) || [];
 
+// Display the best score (if exists) and update guess history
 document.getElementById('bestScore').innerText = bestScore ? bestScore : 'N/A';
 updateGuessHistory();
 
+// Function to generate a random number between 1 and 100
 function generateRandomNumber() {
     return Math.floor(Math.random() * 100) + 1;
 }
 
+// Handle the submission of a guess
 function submitGuess() {
-    let guess = parseInt(document.getElementById('guessInput').value);
+    const guessInput = document.getElementById('guessInput');
+    const guess = parseInt(guessInput.value);
+    const feedbackElement = document.getElementById('feedback');
+
+    // Check for a valid number input
     if (isNaN(guess)) {
-        alert('Please enter a valid number');
+        feedbackElement.innerText = 'Please enter a valid number!';
         return;
     }
+
     attempts++;
     let feedback = '';
 
+    // Compare the guess with the secret number
     if (guess > secretNumber) {
-        feedback = 'Too high';
+        feedback = `Your guess of ${guess} is higher than the chosen number.`;
     } else if (guess < secretNumber) {
-        feedback = 'Too low';
+        feedback = `Your guess of ${guess} is lower than the chosen number.`;
     } else {
-        feedback = 'Correct! You guessed it in ' + attempts + ' attempts.';
+        feedback = `Correct! You guessed the number in ${attempts} attempts.`;
+
+        // Check for best score
         if (!bestScore || attempts < bestScore) {
             bestScore = attempts;
             localStorage.setItem('bestScore', bestScore);
             document.getElementById('bestScore').innerText = bestScore;
         }
+
+        // Save the history and start a new game
         saveHistory(guess, feedback);
-        alert('You won! Starting a new game...');
+        feedbackElement.innerText = feedback;
+        alert('Congratulations! You guessed the correct number! Starting a new game...');
         startNewGame();
         return;
     }
-    
+
+    // Save the guess history and update UI feedback
     saveHistory(guess, feedback);
-    document.getElementById('feedback').innerText = feedback;
+    feedbackElement.innerText = feedback;
     document.getElementById('attempts').innerText = attempts;
+
+    // Clear the input for the next guess
+    guessInput.value = '';
+    guessInput.focus();
 }
 
+// Start a new game with a fresh secret number and reset attempts and history
 function startNewGame() {
     secretNumber = generateRandomNumber();
     attempts = 0;
+    guessHistory = [];
+
+    // Update UI elements
     document.getElementById('feedback').innerText = '';
     document.getElementById('attempts').innerText = attempts;
-    guessHistory = [];
     localStorage.setItem('guessHistory', JSON.stringify(guessHistory));
     updateGuessHistory();
 }
 
+// Reset the guess history and clear the best score
 function resetHistory() {
     guessHistory = [];
     localStorage.setItem('guessHistory', JSON.stringify(guessHistory));
@@ -59,48 +83,28 @@ function resetHistory() {
     updateGuessHistory();
 }
 
+// Reveal the secret number and start a new game
 function revealNumber() {
     alert('The correct number was: ' + secretNumber);
     startNewGame();
 }
 
+// Save the current guess and feedback to the history
 function saveHistory(guess, feedback) {
-    guessHistory.push({ guess: guess, feedback: feedback });
+    guessHistory.push({ guess, feedback });
     localStorage.setItem('guessHistory', JSON.stringify(guessHistory));
     updateGuessHistory();
 }
 
+// Update the guess history list in the UI
 function updateGuessHistory() {
-    let historyElement = document.getElementById('guessHistory');
+    const historyElement = document.getElementById('guessHistory');
     historyElement.innerHTML = '';
+
+    // Populate the guess history
     guessHistory.forEach((entry, index) => {
-        let li = document.createElement('li');
-        li.innerText = `Attempt ${index + 1}: ${entry.guess} (${entry.feedback})`;
-        historyElement.appendChild(li);
+        const listItem = document.createElement('li');
+        listItem.innerText = `Attempt ${index + 1}: ${entry.guess} (${entry.feedback})`;
+        historyElement.appendChild(listItem);
     });
 }
-
-
-// Assuming this function is triggered when the player wins
-function gameWon() {
-    // Displaying a winning message prompt
-    const modal = document.getElementById("winModal"); // Assuming you have a modal for winning
-    modal.style.display = "block";
-    
-    // Clear the input field after the prompt
-    document.getElementById("guessInput").value = ""; // Clearing the input field
-
-    // Trigger animation for the winning effect
-    const gameContainer = document.querySelector('.game-container');
-    gameContainer.classList.add('won-animation');
-
-    // Remove animation after it completes (optional, to reuse later)
-    setTimeout(() => {
-        gameContainer.classList.remove('won-animation');
-    }, 2000); // Animation lasts for 2 seconds
-}
-
-// Close the modal when the user clicks the close button (for modal interactivity)
-document.querySelector('.close').onclick = function() {
-    document.getElementById("winModal").style.display = "none";
-};

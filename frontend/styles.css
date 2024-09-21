@@ -1,47 +1,72 @@
-/* Body and background styling */
-body {
-    background: linear-gradient(135deg, #74ebd5, #ACB6E5);
-    font-family: 'Roboto', sans-serif;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
+/* Global Styles */
+* {
     margin: 0;
-    overflow: hidden;
+    padding: 0;
+    box-sizing: border-box;
 }
 
-/* Game container styling */
-.game-container {
-    background-color: #fff;
-    border-radius: 20px;
-    padding: 40px;
-    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+body {
+    font-family: 'Roboto', sans-serif;
+    background: linear-gradient(135deg, #74ebd5, #ACB6E5);
+    color: #333;
+    line-height: 1.6;
+}
+
+/* Navbar */
+nav {
+    background-color: #333;
+    color: white;
+    padding: 1rem;
     text-align: center;
-    width: 420px;
-    animation: fadeIn 0.8s ease-in-out;
-    position: relative;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 100;
 }
 
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-        transform: translateY(20px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
+nav h1 {
+    font-size: 2rem;
 }
 
-/* Game heading styling */
-h1 {
-    font-size: 2.5em;
-    color: #444;
+/* How to Play Section */
+#how-to-play {
+    padding: 100px 20px 50px;
+    text-align: center;
+    background-color: #f4f4f4;
+}
+
+#how-to-play h2 {
+    font-size: 2.5rem;
     margin-bottom: 20px;
 }
 
-/* Input styling */
-input {
+#how-to-play p {
+    font-size: 1.2rem;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+/* Game Section */
+#game-section {
+    padding: 50px 20px;
+    text-align: center;
+}
+
+#game-section h2 {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+}
+
+.game-container {
+    background-color: #fff;
+    border-radius: 20px;
+    padding: 30px;
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+.game-container input {
     width: 100%;
     padding: 15px;
     margin-bottom: 20px;
@@ -51,12 +76,11 @@ input {
     transition: border-color 0.3s ease;
 }
 
-input:focus {
+.game-container input:focus {
     border-color: #4caf50;
     outline: none;
 }
 
-/* Button styling */
 button {
     width: 100%;
     padding: 12px;
@@ -75,133 +99,39 @@ button:hover {
     transform: scale(1.05);
 }
 
-/* Additional buttons styling */
-.button-container {
-    display: flex;
-    justify-content: space-between;
-    margin-top: 20px;
+#feedback {
+    font-size: 1.2rem;
+    margin-top: 10px;
 }
 
-button.secondary {
-    width: 48%;
-    background-color: #2196F3;
+ul {
+    list-style-type: none;
+    padding: 0;
 }
 
-button.secondary:hover {
-    background-color: #1976d2;
-}
-
-button.alert {
-    background-color: #f44336;
-}
-
-button.alert:hover {
-    background-color: #d32f2f;
-}
-
-/* Modal styling */
-.modal {
-    display: none;
-    position: fixed;
-    z-index: 1;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.4);
-    animation: fadeIn 0.5s ease-in-out;
-}
-
-.modal-content {
-    background-color: white;
-    margin: 12% auto;
-    padding: 30px;
-    border: none;
-    width: 60%;
-    border-radius: 12px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-    text-align: center;
-    position: relative;
-    animation: scaleIn 0.4s ease-in-out;
-}
-
-@keyframes scaleIn {
-    0% {
-        transform: scale(0.8);
-    }
-    100% {
-        transform: scale(1);
-    }
-}
-
-.close {
-    color: #888;
-    position: absolute;
-    right: 20px;
-    top: 15px;
-    font-size: 30px;
-    font-weight: bold;
-    cursor: pointer;
-    transition: color 0.3s ease;
-}
-
-.close:hover {
-    color: #333;
-}
-
-/* Modal button */
-.modal button {
-    padding: 10px 20px;
-    background-color: #4caf50;
-    color: white;
-    border: none;
+li {
+    background-color: #f4f4f4;
+    padding: 10px;
+    margin: 5px 0;
     border-radius: 8px;
-    font-size: 1em;
-    margin-top: 15px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
 }
 
-.modal button:hover {
-    background-color: #45a049;
-}
-
-/* Animation for winning */
-.game-container.won-animation {
-    animation: winnerGlows 2s ease-in-out;
-}
-
-@keyframes winnerGlows {
-    0% {
-        transform: scale(1);
-        box-shadow: 0 0 15px rgba(76, 175, 80, 0.5);
+/* Responsive Design */
+@media (max-width: 600px) {
+    nav h1 {
+        font-size: 1.5rem;
     }
-    50% {
-        transform: scale(1.1);
-        box-shadow: 0 0 30px rgba(76, 175, 80, 0.8);
+
+    #how-to-play h2, #game-section h2 {
+        font-size: 2rem;
     }
-    100% {
-        transform: scale(1);
-        box-shadow: 0 0 15px rgba(76, 175, 80, 0.5);
+
+    .game-container {
+        padding: 20px;
+        max-width: 100%;
     }
-}
 
-/* Footer styling */
-footer {
-    position: absolute;
-    bottom: 10px;
-    text-align: center;
-    width: 100%;
-    font-size: 0.9em;
-    color: #666;
-}
-
-footer a {
-    color: #4caf50;
-    text-decoration: none;
-    transition: color 0.3s ease;
-}
-
-footer a:hover {
-    color: #388e3c;
+    button {
+        padding: 10px;
+    }
 }
